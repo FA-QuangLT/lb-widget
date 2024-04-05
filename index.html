@@ -1,10 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+  <script>
 
-<script type='text/javascript'>
-window.$linebase=[];
-window.LINEBASE_ORG_ID='62bd500d65906d5e7e3a63b0';
-window.LINEBASE_WORKSPACE_ID='62bd500d65906dc8963a63b2';
-(function(){d=document;s=d.createElement('script');
-s.src='https://lb-cw-testing.fireapps.tech/main.js';
-s.async=1;
-d.getElementsByTagName('head')[0].appendChild(s);})();
-</script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('3c0a39fef0ab0ea1a0cb', {
+      cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('admin.62730338466');
+    channel.bind('customer.imported', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
+</head>
+<body>
+  <h1>Pusher Test</h1>
+  <p>
+    Try publishing an event to channel <code>my-channel</code>
+    with event name <code>my-event</code>.
+  </p>
+</body>
